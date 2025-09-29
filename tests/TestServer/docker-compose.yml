@@ -1,0 +1,24 @@
+services:
+
+
+  # ---------------------------------------------------------------------
+  #   SpiritEx Server 0500
+  #   support: 
+  #   public urls:
+  #     server0500.spiritex.dev:4320
+  # ---------------------------------------------------------------------
+
+
+  server0500:
+    container_name: spiritex-core-0500
+    image: spiritex-core-0500:latest
+    restart: unless-stopped
+    # depends_on:
+    #   - mysql
+    #   - letsencrypt-companion
+    ports:
+      - "4200:4200/tcp"
+    volumes:
+      - .:/server/host
+
+

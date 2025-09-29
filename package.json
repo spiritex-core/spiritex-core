@@ -1,0 +1,40 @@
+{
+  "name": "spiritex-core-0500",
+  "description": "The SpiritEx Server Core.",
+  "version": "0.5.0",
+  "main": "src/Server/Server.js",
+  "author": "",
+  "license": "",
+  "scripts": {
+    "Docker-Build": "docker build -t spiritex-core-0500 .",
+    "Build-Readme": "node docs/build/build-readme.js",
+    "Run-Server": "node src/RunServer.js",
+    "Run-Tests": "npx mocha -u bdd tests/*.js --timeout 0 --slow 20 --colors"
+  },
+  "files": [
+    "src/",
+    "docs/",
+    "tests/",
+    "package.json",
+    "readme.md"
+  ],
+  "dependencies": {
+    "amqplib": "^0.10.8",
+    "bcrypt": "^6.0.0",
+    "cls-hooked": "^4.2.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "fs-extra": "^11.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "log4js": "^6.9.1",
+    "moniker": "^0.1.2",
+    "mysql2": "^3.14.3",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7",
+    "tmp": "^0.2.5"
+  },
+  "devDependencies": {
+    "mocha": "^11.2.2"
+  }
+}
