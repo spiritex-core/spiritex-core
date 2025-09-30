@@ -12,6 +12,9 @@ It is also used by users to authenticate with the server.
 This service can be disabled or overwritten by a custom implementation.
 
 ***Methods***
+
+| Method | Description |
+| :--- | :--- |
 | **NewSession**( Strategy, Identifier, Secret ) | Authenticate with the network and retrieve a new network session and token. The new token is also returned in the Authorization header of the response |
 | **NewNetworkToken**() | Generate a new network token for an existing session. The new token is also returned in the Authorization header of the response. |
 | **GetMySession**() | Gets this session. |
