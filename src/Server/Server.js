@@ -13,6 +13,7 @@ module.exports = function ( ServerConfig )
 	if ( !ServerConfig ) { throw new Error( `Missing required argument [ServerConfig].` ); }
 	if ( !ServerConfig.server_name ) { throw new Error( `Missing required argument [ServerConfig.server_name].` ); }
 	if ( !ServerConfig.server_version ) { throw new Error( `Missing required argument [ServerConfig.server_version].` ); }
+	ServerConfig = JSON.parse( JSON.stringify( ServerConfig ) );
 
 	//---------------------------------------------------------------------
 	// The global Server object.
@@ -30,6 +31,10 @@ module.exports = function ( ServerConfig )
 			// DataPath: null,			// The output path for data files
 			ServicesPath: null,		// The application's services path
 			TransportsPath: null,	// The application's transports path
+		},
+		Timestamps: {
+			initialized_at: null,
+			started_at: null,
 		},
 		LogManager: null,			// Log Factory
 		Logger: null,				// Default server logger
@@ -231,11 +236,33 @@ module.exports = function ( ServerConfig )
 
 
 	//---------------------------------------------------------------------
+	// Initialize the server.
+	//---------------------------------------------------------------------
+
+	Server.InitializeServer = async function () 
+	{
+		Server.Logger.info( `Initializing server.` );
+		await ServiceManager.InitializeServices( Server );
+		Server.Logger.info( `Server is initialized.` );
+		Server.Timestamps.initialized_at = ( new Date() ).toISOString();
+		return true;
+	};
+
+
+	//---------------------------------------------------------------------
 	// Start the server.
 	//---------------------------------------------------------------------
 
 	Server.StartupServer = async function () 
 	{
+		if ( !Server.Timestamps.initialized_at ) { throw new Error( `Server has not been initialized. Call InitializeServer() before StartupServer().` ); }
+
+		if ( Server.Timestamps.started_at ) 
+		{
+			console.log.warn( `Server has already been started. Restarting the server.` );
+			await Server.ShutdownServer();
+		}
+
 		Server.Logger.info( `Starting server.` );
 
 		// Startup the services.
@@ -259,6 +286,7 @@ module.exports = function ( ServerConfig )
 		}
 
 		Server.Logger.info( `Server is running.` );
+		Server.Timestamps.started_at = ( new Date() ).toISOString();
 		return true;
 	};
 
@@ -280,18 +308,6 @@ module.exports = function ( ServerConfig )
 		Server.Logger.info( `Server is stopped.` );
 		return true;
 	};
-
-
-	//---------------------------------------------------------------------
-	// Initiailize the server.
-	//---------------------------------------------------------------------
-
-	( async () => 
-	{
-		Server.Logger.info( `Initializing server.` );
-		await ServiceManager.InitializeServices( Server );
-		Server.Logger.info( `Server is initialized.` );
-	} )();
 
 
 	//---------------------------------------------------------------------

@@ -5,17 +5,12 @@ const PATH = require( 'path' );
 const ASSERT = require( 'assert' );
 const TMP = require( 'tmp' );
 
-// Load the server configuration.
-const ServerConfig = require( './ServerConfig' );
-ServerConfig.Logger.message_log_level = 'trace';
-ServerConfig.Logger.data_log_level = 'OFF';
-
-// Load and configure the server.
-var Server = require( '../../src/Server/Server' )( ServerConfig );
+var ServerFactory = require( '../../src/Server/Server' );
+var Server = null;
 
 
 //---------------------------------------------------------------------
-describe( `Http Transport`, function ()
+describe( `200) Service Tests over Http Transport`, function ()
 {
 
 
@@ -27,6 +22,10 @@ describe( `Http Transport`, function ()
 	before( 'Startup',
 		async function ()
 		{
+			const ServerConfig = require( './ServerConfig' );
+			// ServerConfig.Logger.message_log_level = 'trace';
+			Server = ServerFactory( ServerConfig );
+			await Server.InitializeServer();
 			await Server.StartupServer();
 			return;
 		} );
@@ -36,8 +35,9 @@ describe( `Http Transport`, function ()
 	after( 'Shutdown',
 		async function ()
 		{
-			await new Promise( resolve => setTimeout( resolve, 1000 ) ); // Wait for transactions to complete!
+			// await new Promise( resolve => setTimeout( resolve, 1000 ) ); // Wait for transactions to complete!
 			await Server.ShutdownServer();
+			Server = null;
 			return;
 		} );
 

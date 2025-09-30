@@ -4,11 +4,11 @@ const ASSERT = require( 'assert' );
 const FS = require( 'fs' );
 const PATH = require( 'path' );
 
-const ServerConfig = require( './ServerConfig' );
-var Server = require( '../../src/Server/Server' )( ServerConfig );
+var ServerFactory = require( '../../src/Server/Server' );
+var Server = null;
 
 
-describe( 'Generator', function () 
+describe( '300) Generator Unit Tests', function () 
 {
 	let Generator;
 
@@ -16,6 +16,9 @@ describe( 'Generator', function ()
 	before( 'Startup',
 		async function ()
 		{
+			const ServerConfig = require( './ServerConfig' );
+			Server = ServerFactory( ServerConfig );
+			await Server.InitializeServer();
 			await Server.StartupServer();
 			return;
 		} );
@@ -27,6 +30,7 @@ describe( 'Generator', function ()
 		{
 			// await new Promise( resolve => setTimeout( resolve, 1000 ) ); // Wait for sequelize transactions to complete!
 			await Server.ShutdownServer();
+			Server = null;
 			return;
 		} );
 

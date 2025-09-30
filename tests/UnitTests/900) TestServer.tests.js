@@ -3,22 +3,23 @@
 const ASSERT = require( 'assert' );
 const PATH = require( 'path' );
 
-const ServerConfigPath = PATH.join( __dirname, 'TestServer', 'ServerConfig.js' );
-const ServerConfig = require( ServerConfigPath );
-ServerConfig.Logger.message_log_level = 'OFF';
-ServerConfig.Logger.data_log_level = 'OFF';
+var ServerFactory = require( '../../src/Server/Server' );
+var Server = null;
 
-const ServerModulePath = PATH.join( __dirname, '..', 'src', 'Server', 'Server.js' );
-const Server = require( ServerModulePath )( ServerConfig );
 
 //---------------------------------------------------------------------
-describe( `100) TestServer Tests`, function ()
+describe( `900) TestServer Unit Tests`, function ()
 {
 
 	//---------------------------------------------------------------------
 	before( 'Startup',
 		async function ()
 		{
+			const ServerConfig = require( '../TestServer/ServerConfig' );
+			ServerConfig.Logger.message_log_level = 'OFF';
+			ServerConfig.Logger.data_log_level = 'OFF';
+			Server = ServerFactory( ServerConfig );
+			await Server.InitializeServer();
 			await Server.StartupServer();
 			return;
 		} );
@@ -30,6 +31,7 @@ describe( `100) TestServer Tests`, function ()
 		{
 			// await new Promise( resolve => setTimeout( resolve, 1000 ) ); // Wait for sequelize transactions to complete!
 			await Server.ShutdownServer();
+			Server = null;
 			return;
 		} );
 

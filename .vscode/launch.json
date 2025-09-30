@@ -5,10 +5,10 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "---------- Server",
+			"name": "---------- TestServer",
 		},
 		{
-			"name": "Run Test Server",
+			"name": "Run TestServer",
 			"type": "node",
 			"request": "launch",
 			"skipFiles": [
@@ -16,12 +16,8 @@
 				"${workspaceFolder}/node_modules/**"
 			],
 			"cwd": "${workspaceFolder}",
-			"program": "${workspaceFolder}/cli/RunServer.js",
-			"args": [
-				"--host",
-				"tests/TestServer",
-				"--log",
-			],
+			"program": "${workspaceFolder}/tests/TestServer/RunServer.js",
+			"args": [],
 			"outputCapture": "std",
 			"internalConsoleOptions": "openOnSessionStart",
 		},
@@ -115,6 +111,29 @@
 			"internalConsoleOptions": "openOnSessionStart",
 		},
 		{
+			"name": "900) TestServer Tests",
+			"type": "node",
+			"request": "launch",
+			"skipFiles": [
+				"<node_internals>/**",
+				"${workspaceFolder}/node_modules/**"
+			],
+			"cwd": "${workspaceFolder}",
+			"program": "${workspaceFolder}/node_modules/mocha/bin/mocha",
+			"args": [
+				"-u",
+				"bdd",
+				"tests//UnitTests/900) TestServer.tests.js",
+				"--timeout",
+				"0",
+				"--slow",
+				"50",
+				"--colors",
+			],
+			"outputCapture": "std",
+			"internalConsoleOptions": "openOnSessionStart",
+		},
+		{
 			"name": "---------- Service Tests",
 		},
 		{
@@ -130,11 +149,11 @@
 			"args": [
 				"-u",
 				"bdd",
-				"tests/ServiceTests/* Transport.js",
+				"tests/ServiceTests/*.tests.js",
 				"--timeout",
 				"0",
 				"--slow",
-				"50",
+				"100",
 				"--colors",
 			],
 			"outputCapture": "std",
@@ -153,11 +172,11 @@
 			"args": [
 				"-u",
 				"bdd",
-				"tests/ServiceTests/100) InProcess Transport.js",
+				"tests/ServiceTests/100) InProcess Transport.tests.js",
 				"--timeout",
 				"0",
 				"--slow",
-				"50",
+				"100",
 				"--colors",
 			],
 			"outputCapture": "std",
@@ -176,60 +195,11 @@
 			"args": [
 				"-u",
 				"bdd",
-				"tests/ServiceTests/200) Http Transport.js",
+				"tests/ServiceTests/200) Http Transport.tests.js",
 				"--timeout",
 				"0",
 				"--slow",
-				"50",
-				"--colors",
-			],
-			"outputCapture": "std",
-			"internalConsoleOptions": "openOnSessionStart",
-		},
-		{
-			"name": "---------- TestServer Tests",
-		},
-		{
-			"name": "100) RunTestServer Tests",
-			"type": "node",
-			"request": "launch",
-			"skipFiles": [
-				"<node_internals>/**",
-				"${workspaceFolder}/node_modules/**"
-			],
-			"cwd": "${workspaceFolder}",
-			"program": "${workspaceFolder}/node_modules/mocha/bin/mocha",
-			"args": [
-				"-u",
-				"bdd",
-				"tests/100) RunTestServer.tests.js",
-				"--timeout",
-				"0",
-				"--slow",
-				"50",
-				"--colors",
-			],
-			"outputCapture": "std",
-			"internalConsoleOptions": "openOnSessionStart",
-		},
-		{
-			"name": "100) TestServer Tests",
-			"type": "node",
-			"request": "launch",
-			"skipFiles": [
-				"<node_internals>/**",
-				"${workspaceFolder}/node_modules/**"
-			],
-			"cwd": "${workspaceFolder}",
-			"program": "${workspaceFolder}/node_modules/mocha/bin/mocha",
-			"args": [
-				"-u",
-				"bdd",
-				"tests/110) TestServer.tests.js",
-				"--timeout",
-				"0",
-				"--slow",
-				"50",
+				"100",
 				"--colors",
 			],
 			"outputCapture": "std",

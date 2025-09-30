@@ -4,25 +4,24 @@ const ASSERT = require( 'assert' );
 const PATH = require( 'path' );
 const FS = require( 'fs' );
 
-// Load the server configuration.
-const ServerConfig = require( './ServerConfig' );
-// ServerConfig.Logger.message_log_level = 'trace';
-// ServerConfig.Logger.data_log_level = 'trace';
-
-// Load and configure the server.
-var Server = require( '../../src/Server/Server' )( ServerConfig );
+var ServerFactory = require( '../../src/Server/Server' );
+var Server = null;
 
 const TEST_DB_NAME = 'testdb';
 const TEST_TABLE_NAME = 'test-table';
 
+
 //---------------------------------------------------------------------
-describe( `200) SqlManager Tests`, function ()
+describe( `200) SqlManager Unit Tests`, function ()
 {
 
 	//---------------------------------------------------------------------
 	before( 'Startup',
 		async function ()
 		{
+			const ServerConfig = require( './ServerConfig' );
+			Server = ServerFactory( ServerConfig );
+			await Server.InitializeServer();
 			await Server.StartupServer();
 			return;
 		} );
@@ -34,6 +33,7 @@ describe( `200) SqlManager Tests`, function ()
 		{
 			// await new Promise( resolve => setTimeout( resolve, 1000 ) ); // Wait for sequelize transactions to complete!
 			await Server.ShutdownServer();
+			Server = null;
 			return;
 		} );
 

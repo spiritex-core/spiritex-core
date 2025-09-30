@@ -51,10 +51,10 @@ module.exports = {
 	Client: {
 		//---------------------------------------------------------------------
 		Options: {
-			log_requests: true,			// Log all requests to the console.
-			log_responses: true,			// Log all responses to the console.
-			trace_authentication: true,		// Trace the authentication process.
-			throw_handled_errors: false,	// Throw errors that are already handled by the client.
+			log_requests: false,				// Log all requests to the console.
+			log_responses: false,				// Log all responses to the console.
+			trace_authentication: false,		// Trace the authentication process.
+			throw_handled_errors: false,		// Throw errors that are already handled by the client.
 			Callbacks: {
 				OnApiResult: null,				// async function ( ApiResult ) { },
 				OnError: null,					// async function ( Message ) { },

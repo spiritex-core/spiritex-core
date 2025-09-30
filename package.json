@@ -6,10 +6,10 @@
   "author": "",
   "license": "",
   "scripts": {
-    "Docker-Build": "docker build -t spiritex-core-0500 .",
     "Build-Readme": "node docs/build/build-readme.js",
+    "Build-Tests": "call docs/build/build-tests.bat",
     "Run-Server": "node src/RunServer.js",
-    "Run-Tests": "npx mocha -u bdd tests/*.js --timeout 0 --slow 20 --colors"
+    "Run-Tests": "npx mocha -u bdd tests/**/*.tests.js --timeout 0 --slow 1000 --colors"
   },
   "files": [
     "src/",
