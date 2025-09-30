@@ -129,7 +129,6 @@ ScanFolders();
 {
 	var content = '';
 	content += `# ${PACKAGE.name}\n\n`;
-	content += `>\n`;
 	content += `* Version: ${PACKAGE.version}\n`;
 	content += `* Dated: ${new Date().toISOString().substring( 0, 10 )}\n`;
 	content += '\n\n';

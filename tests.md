@@ -1,5 +1,5 @@
-## SpiritEx-Core Testing 
-- Tue 09/30/2025 @  3:40:59.53 
+## spiritex-core Tests 
+- Run on: Tue 09/30/2025 @  3:48:57.33 
 ``` 
 
 

@@ -1,6 +1,5 @@
 # spiritex-core-0500
 
->
 * Version: 0.5.0
 * Dated: 2025-09-30
 
