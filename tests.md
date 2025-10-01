@@ -116,7 +116,7 @@ WARN: Skipping test because sqlite in-memory database does not support mixed tra
     mysql
       ✔ Should create a SqlManager.
       ✔ Should register a database.
-      ✔ Should startup the SqlManager.
+      ✔ Should startup the SqlManager. (677ms)
       ✔ Should perform basic operations.
       ✔ Should commit a transaction.
       ✔ Should rollback a failed transaction.
@@ -175,6 +175,6 @@ WARN: Skipping test because sqlite in-memory database does not support mixed tra
       ✔ should calc array average
 
 
-  121 passing (9s)
+  121 passing (10s)
 
 ```
