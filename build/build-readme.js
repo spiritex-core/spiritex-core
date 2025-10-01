@@ -2,12 +2,12 @@
 
 const PATH = require( 'path' );
 const FS = require( 'fs' );
-const FS_EXTRA = require( 'fs-extra' );
+// const FS_EXTRA = require( 'fs-extra' );
 
-const PACKAGE = require( '../../package.json' );
+const PACKAGE = require( '../package.json' );
 
-const CONTENT_FOLDER = PATH.resolve( __dirname, '..', 'readme' );
-const OUTPUT_FILE = PATH.resolve( __dirname, '..', '..', 'readme.md' );
+const CONTENT_FOLDER = PATH.resolve( __dirname, '..', 'docs', 'readme' );
+const OUTPUT_FILE = PATH.resolve( __dirname, '..', 'readme.md' );
 
 const REPLACEMENTS = [
 	{ from: '../../images/', to: './docs/images/' },

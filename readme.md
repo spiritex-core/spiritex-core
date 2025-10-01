@@ -1,7 +1,7 @@
-# spiritex-core-0500
+# @spiritex/spiritex-core
 
 * Version: 0.5.0
-* Dated: 2025-09-30
+* Dated: 2025-10-01
 
 
 # Table of Contents
@@ -207,33 +207,29 @@ The `Diagnostic Service` is publicly available and provides server information.
 It can be used to verify that the server is running and obtain platform information.
 
 ***Methods***
-- **ServerInfo**() : Gets server info.
-- **ServerError**() : Throws a server error.
+
+| Method | Description |
+| :--- | :--- |
+| **ServerInfo**() | Gets server info. |
+| **ServerError**() | Throws a server error. |
 
 
 <a id="220-The-Sdk-Service"></a>
 ## The Sdk Service
 
 
-The `Diagnostic Service` is publicly available and provides server information.
-It can be used to verify that the server is running and obtain platform information.
-
-***Methods***
-- **ServerInfo**() : Gets server info.
-- **ServerError**() : Throws a server error.
-
-
-### Sdk Service
-
 The `Sdk Service` is also publicly available and provides access to the server's Client SDKs and documentation.
 It can be used to obtain the Client SDK for a specific service and user type.
 It can also be used to obtain schema and documentation for network services.
 
 ***Methods***
-- **NetworkUrls**() : Gets the server addresses for all services on the network.
-- **Schema**( UserType ) : Gets the schema for all services hosted by this server.
-- **Client**( Transport, Platform, UserType ) : Downloads the SDK Client as a single source file for the target transport and platform.
-- **Documentation**( Transport, Platform, UserType, UseLinks ) : Downloads the SDK documentation as a single markdown file.
+
+| Method | Description |
+| :--- | :--- |
+| **NetworkUrls**() | Gets the server addresses for all services on the network. |
+| **Schema**( UserType ) | Gets the schema for all services hosted by this server. |
+| **Client**( Transport, Platform, UserType ) | Downloads the SDK Client as a single source file for the target transport and platform. |
+| **Documentation**( Transport, Platform, UserType, UseLinks ) | Downloads the SDK documentation as a single markdown file. |
 
 
 <a id="230-The-Member-Service"></a>
@@ -253,6 +249,9 @@ It is also used by users to authenticate with the server.
 This service can be disabled or overwritten by a custom implementation.
 
 ***Methods***
+
+| Method | Description |
+| :--- | :--- |
 | **NewSession**( Strategy, Identifier, Secret ) | Authenticate with the network and retrieve a new network session and token. The new token is also returned in the Authorization header of the response |
 | **NewNetworkToken**() | Generate a new network token for an existing session. The new token is also returned in the Authorization header of the response. |
 | **GetMySession**() | Gets this session. |
@@ -688,18 +687,22 @@ When the Client SDK is generated, it is generated for each of the three main use
 <a id="810-Minimal-Example"></a>
 ## Minimal Example
 
-```js
 
+```shell
+npm install --save @spiritex/spiritex-core
+```
+
+```js
+const ServerFactory = require( '@spiritex/spiritex-core'  );
 const ServerConfig = require( './Config.js' );
-const ServerFactory = require( 'spiritex-core-0500'  );
 const Server = ServerFactory( ServerConfig );
 
+await Server.InitializeServer();
 await Server.StartupServer();
 
 ...
 
 await Server.ShutdownServer();
-
 ```
 
 

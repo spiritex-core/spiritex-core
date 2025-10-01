@@ -371,7 +371,7 @@ describe( `200) SqlManager Unit Tests`, function ()
 				if ( ( database._.Config.SequelizeOptions.dialect === 'sqlite' )
 					&& ( database._.Config.SequelizeOptions.storage === ':memory:' ) )
 				{
-					console.error( `Skipping test because sqlite in-memory database does not support mixed transactions.` );
+					console.log( `WARN: Skipping test because sqlite in-memory database does not support mixed transactions.` );
 					return;
 				}
 

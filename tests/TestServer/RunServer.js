@@ -46,5 +46,6 @@ process.on( 'SIGTERM', graceful_shutdown );
 
 ( async function ()
 {
+	await Server.InitializeServer();
 	await Server.StartupServer();
 }() );

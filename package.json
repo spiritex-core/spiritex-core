@@ -1,40 +1,62 @@
 {
-  "name": "spiritex-core-0500",
-  "description": "The SpiritEx Server Core.",
-  "version": "0.5.0",
-  "main": "src/Server/Server.js",
-  "author": "",
-  "license": "",
-  "scripts": {
-    "Build-Readme": "node docs/build/build-readme.js",
-    "Build-Tests": "call docs/build/build-tests.bat",
-    "Run-Server": "node src/RunServer.js",
-    "Run-Tests": "npx mocha -u bdd tests/**/*.tests.js --timeout 0 --slow 1000 --colors"
-  },
-  "files": [
-    "src/",
-    "docs/",
-    "tests/",
-    "package.json",
-    "readme.md"
-  ],
-  "dependencies": {
-    "amqplib": "^0.10.8",
-    "bcrypt": "^6.0.0",
-    "cls-hooked": "^4.2.2",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "fs-extra": "^11.3.1",
-    "jsonwebtoken": "^9.0.2",
-    "log4js": "^6.9.1",
-    "moniker": "^0.1.2",
-    "mysql2": "^3.14.3",
-    "sequelize": "^6.37.7",
-    "sqlite3": "^5.1.7",
-    "tmp": "^0.2.5"
-  },
-  "devDependencies": {
-    "mocha": "^11.2.2"
-  }
+	"name": "@spiritex/spiritex-core",
+	"description": "The SpiritEx Server Core.",
+	"version": "0.5.0",
+	"main": "src/Server/Server.js",
+	"license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/spiritex-core/spiritex-core.git"
+    },
+    "authors": [
+        {
+            "name": "Andre' G. Bowlin",
+            "email": "andre@sicariiventuredev.com",
+            "homepage": ""
+        }
+    ],
+    "public": true,
+	"scripts": {
+		"Run-TestServer": "node tests/TestServer/RunServer.js",
+		"DevOps: run tests": "npx @liquicode/devops --tasks .\\build\\build.tasks.js run_tests",
+		"DevOps: build docs": "npx @liquicode/devops --tasks .\\build\\build.tasks.js build_docs",
+		"DevOps: publish version": "npx @liquicode/devops --tasks .\\build\\build.tasks.js publish_version",
+		"DevOps: start new version": "npx @liquicode/devops --tasks .\\build\\build.tasks.js start_new_version"
+	},
+	"files": [
+		".vscode/",
+		"docs/images/",
+		"src/",
+		"tests/",
+		"package.json",
+		"license.md",
+		"readme.md",
+		"tests.md",
+		"version.md"
+	],
+	"keywords": [
+		"spiritex",
+		"spiritex market",
+		"spiritex exchange"
+	],
+	"dependencies": {
+		"amqplib": "^0.10.8",
+		"bcrypt": "^6.0.0",
+		"cls-hooked": "^4.2.2",
+		"cookie-parser": "^1.4.7",
+		"cors": "^2.8.5",
+		"express": "^5.1.0",
+		"fs-extra": "^11.3.1",
+		"jsonwebtoken": "^9.0.2",
+		"log4js": "^6.9.1",
+		"moniker": "^0.1.2",
+		"mysql2": "^3.14.3",
+		"sequelize": "^6.37.7",
+		"sqlite3": "^5.1.7",
+		"tmp": "^0.2.5"
+	},
+	"devDependencies": {
+		"@liquicode/devops": "^0.0.20",
+		"mocha": "^11.2.2"
+	}
 }

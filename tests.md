@@ -1,6 +1,10 @@
-## spiritex-core Tests 
-- Run on: Tue 09/30/2025 @  3:48:57.33 
-``` 
+# @spiritex/spiritex-core
+
+> Version: 0.5.0
+
+## Test Results
+
+```
 
 
   100) Service Tests over InProcess Transport
@@ -97,6 +101,7 @@
       ✔ Should perform basic operations.
       ✔ Should commit a transaction.
       ✔ Should rollback a failed transaction.
+WARN: Skipping test because sqlite in-memory database does not support mixed transactions.
       ✔ Should mix transactional and non-transactional operations within the same transaction.
       ✔ Should shutdown the SqlManager.
     sqlite3 (local file)
@@ -170,5 +175,6 @@
       ✔ should calc array average
 
 
-  121 passing (7s)
+  121 passing (9s)
 
+```

@@ -22,23 +22,6 @@
 			"internalConsoleOptions": "openOnSessionStart",
 		},
 		{
-			"name": "---------- Docs",
-		},
-		{
-			"name": "Build Readme",
-			"type": "node",
-			"request": "launch",
-			"skipFiles": [
-				"<node_internals>/**",
-				"${workspaceFolder}/node_modules/**"
-			],
-			"cwd": "${workspaceFolder}",
-			"program": "${workspaceFolder}/docs/build/build-readme.js",
-			"args": [],
-			"outputCapture": "std",
-			"internalConsoleOptions": "openOnSessionStart",
-		},
-		{
 			"name": "---------- Unit Tests",
 		},
 		{
